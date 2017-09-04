@@ -8,7 +8,7 @@
 import socket
 import sys
 
-if len(sys.argv) <= 2:
+if len(sys.argv) < 2:
 	print "Usage: vrfy.py <server> [username file]"
 	sys.exit(0)
 
@@ -30,7 +30,12 @@ server = sys.argv[1]
 # Setup connection and print banner.
 print "Connecting to %s" % server
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-con = s.connect((server, 25))
+
+try:
+    con = s.connect((server, 25))
+except:
+    print "Cannot connect to %s. Exiting." % server
+    sys.exit(2)
 print s.recv(1024)
 
 # Some servers want to meet and greet first
