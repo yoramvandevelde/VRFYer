@@ -42,7 +42,7 @@ print "Testing for VRFY"
 s.send('VRFY testuser\r\n')
 testresult = s.recv(1024).split()
 
-# The test returns one of these three most likely
+# The test returns one of these statusses most likely
 # 250 = ok
 # 252 = cannot verify, but will try to deliver
 # 501 = syntax error, might miss domainname
